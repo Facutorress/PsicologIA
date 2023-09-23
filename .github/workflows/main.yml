@@ -14,15 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Verify directory and lock file
+        run: |
+          ls -la
+          cat package-lock.json
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: npm
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
-          token: H8j68Q95Iuy2-ZVQ6FpsOdldSt2Flp_PI5bLcDcv
+          token: ${{ secrets.EXPO_TOKEN }}
       - name: Install dependencies
         run: npm install
       - name: Install expo CLI
