@@ -13,12 +13,12 @@ jobs:
     name: Install and build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Verify directory and lock file
+      - uses: actions/checkout@v2
+      - name: List files and show package-lock.json
         run: |
           ls -la
           cat package-lock.json
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3.4.1
         with:
           node-version: 16.x
       - name: Setup Expo and EAS
