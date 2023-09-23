@@ -12,6 +12,9 @@ jobs:
   build:
     name: Install and build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: PsicologIA # Ajusta esto al nombre correcto del subdirectorio
     steps:
       - uses: actions/checkout@v2
       - name: List files and show package-lock.json
@@ -34,3 +37,4 @@ jobs:
         run: eas build --profile preview --platform ios
       - name: Update on Expo
         run: eas update --auto
+
