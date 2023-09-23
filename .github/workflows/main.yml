@@ -36,7 +36,7 @@ jobs:
       - name: Publish on expo server
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --profile preview --platform ios
+        run: eas build --profile preview --platform android
       - name: Update on Expo
         run: eas update --auto
 
