@@ -1,0 +1,43 @@
+name: EAS Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    name: Install and build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: PsicologIA
+    steps:
+      - uses: actions/checkout@v2
+      - name: List files and show package-lock.json
+        run: |
+          ls -la
+          cat package-lock.json
+      - uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16.x
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install dependencies
+        run: npm install
+      - name: Install expo CLI
+        run: npm install -g expo-cli
+      - name: Publish on expo server
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas build --profile preview --platform android
+      - name: Update on Expo
+        run: eas update --auto
+
+
