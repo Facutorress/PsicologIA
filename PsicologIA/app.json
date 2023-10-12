@@ -2,14 +2,16 @@
   "expo": {
     "name": "PsicologIA",
     "slug": "PsicologIA",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
+      "scheme": "myscheme",
+          "splash": {
       "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+      
     },
     "assetBundlePatterns": [
       "**/*"
@@ -18,14 +20,19 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 3,
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#000"
       },
       "package": "com.ffacu.torres.PsicologIA"
     },
+    "plugins": [
+      "@react-native-firebase/app"
+    ],
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     },
     "extra": {
       "eas": {

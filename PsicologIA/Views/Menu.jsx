@@ -14,13 +14,14 @@ export default function Menu() {
         <Text style={styles.buttonText}>Conversacion</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => { /* Navegación u otra acción para Opción 2 */ }}>
-        <Text style={styles.buttonText}>Opción 2</Text>
-      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Mindfulness')}>
+    <Text style={styles.buttonText}>Mindfulness</Text>
+</TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => { /* Navegación u otra acción para Opción 3 */ }}>
-        <Text style={styles.buttonText}>Opción 3</Text>
-      </TouchableOpacity>
+<TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Lluvia')}>
+    <Text style={styles.buttonText}>Lluvia</Text>
+</TouchableOpacity>
+
     </ImageBackground>
   );
 }

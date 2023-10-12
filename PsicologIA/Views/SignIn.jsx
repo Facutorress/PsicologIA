@@ -1,49 +1,65 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, Button } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
 import { useNavigation } from '@react-navigation/native';
-
-
+import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore';
+import { db } from '../firebaseConfig';
+WebBrowser.maybeCompleteAuthSession();
 
 export default function SignIn() {
   const navigation = useNavigation();
 
-
+  
 
   const sendUserInfoToBackend = async (userInfo) => {
     try {
-      const response = await fetch('URL_DE_TU_BACKEND/Logingoogle', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: userInfo.displayName,
-          lastname: userInfo.familyName, // Asegúrate de que estos campos existen en userInfo
-          email: userInfo.email,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.jwt) {
-        await AsyncStorage.setItem("@user", JSON.stringify(userInfo));
-        navigation.navigate('Menu');
+      // Obtén la autenticación actual de Firebase
+      const firebaseAuth = auth();
+  
+      // Verifica si el usuario ya está autenticado
+      if (firebaseAuth.currentUser) {
+        // El usuario ya está autenticado, verifica si el usuario ya existe en Firestore
+        const userDocumentSnapshot = await firestore()
+          .collection('users')
+          .doc(firebaseAuth.currentUser.uid)
+          .get();
+  
+        if (userDocumentSnapshot.exists) {
+          // El usuario ya existe en Firestore, no es necesario hacer nada más
+          navigation.navigate('Menu');
+        } else {
+          // El usuario no existe en Firestore, crea un nuevo documento
+          await firestore()
+            .collection('users')
+            .doc(firebaseAuth.currentUser.uid)
+            .set(userInfo.toJSON());
+  
+          navigation.navigate('Menu');
+        }
       } else {
-        Alert.alert('Error', 'Hubo un problema al registrar al usuario en el sistema.');
+        // El usuario no está autenticado, maneja este caso como desees
+        Alert.alert('Error', 'El usuario no está autenticado.');
       }
     } catch (error) {
       Alert.alert('Error', 'Hubo un error al comunicarse con el servidor.');
     }
   };
-
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Inicio de Sesión</Text>
-      <TouchableOpacity style={styles.button} onPress={() => promptAsync()}>
-        <Text style={styles.buttonText}>Iniciar sesión con Google</Text>
-      </TouchableOpacity>
+      <Button 
+        title="Iniciar sesión con Google" 
+     
+      />
+       <Button 
+    title="In con Google" 
+    onPress={() => navigation.navigate('Menu')}
+/>
+
     </View>
   );
+
 }
 const styles = StyleSheet.create({
   container: {

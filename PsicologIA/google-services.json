@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "665124678068",
+    "project_id": "psicologia2-bccb4",
+    "storage_bucket": "psicologia2-bccb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665124678068:android:ddd146e54b0541aa132ae1",
+        "android_client_info": {
+          "package_name": "com.ffacu.torres.PsicologIA"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665124678068-l1fckrubrnj6l7ecu1qkr6uc6m8slbsi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ffacu.torres.PsicologIA",
+            "certificate_hash": "a77f54b22c9a5d14e36b08cecaac7a00ed0b22ac"
+          }
+        },
+        {
+          "client_id": "665124678068-jsati63n2qgp7rk99tv91u7s7s8203av.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsV7rldIKmmGINtkTtGagrfsQjncvipEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665124678068-jsati63n2qgp7rk99tv91u7s7s8203av.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
